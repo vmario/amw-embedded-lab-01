@@ -1,12 +1,12 @@
 .PHONY: all clean
 
-TARGET = manual.pdf
-SOURCE = manual.md
+all: manual.pdf report.pdf
 
-all: $(TARGET)
+manual.pdf: manual.md
+	pandoc $^ -o $@ --template eisvogel --listings --metadata date="`date +%F`"
 
-$(TARGET): $(SOURCE)
+report.pdf: report.md
 	pandoc $^ -o $@ --template eisvogel --listings --metadata date="`date +%F`"
 
 clean:
-	rm -f $(TARGET)
+	rm -f manual.pdf report.pdf
