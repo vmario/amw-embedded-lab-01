@@ -1,19 +1,22 @@
 ---
-title: "Sprawozdanie z laboratorium systemów wbudowanych"
-subtitle: "Ćwiczenie 1: Odczyt i zapis GPIO"
+title: "Ćwiczenie 1: Odczyt i zapis GPIO"
 author: [Mariusz Chilmon <<mariusz.chilmon@ctm.gdynia.pl>>]
 lang: "pl"
 titlepage: no
-titlepage-logo: "logo.jpg"
 colorlinks: yes
+header-right: "\\faEdit"
+footer-left: "Sprawozdanie z laboratorium"
 header-includes: |
   \usepackage{awesomebox}
 ...
 
-# Data:
-# Autorzy:
+_W trosce o Państwa wyniki proszę o czytelne wpisywanie nazwisk._
 
-## Zadanie podstawowe
+**Data**: \dotfill
+
+**Autorzy**: \dotfill
+
+# Zadanie podstawowe
 
 Test.
 

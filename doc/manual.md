@@ -1,10 +1,12 @@
 ---
-title: "Instrukcja laboratorium systemów wbudowanych"
-subtitle: "Ćwiczenie 1: Odczyt i zapis GPIO"
+title: "Ćwiczenie 1: Odczyt i zapis GPIO"
+subtitle: "Instrukcja laboratorium"
+footer-left: "Instrukcja laboratorium"
 author: [Mariusz Chilmon <<mariusz.chilmon@ctm.gdynia.pl>>]
 lang: "pl"
 titlepage: yes
-titlepage-logo: "logo.jpg"
+titlepage-logo: "logo.png"
+logo-width: "70mm"
 colorlinks: yes
 header-includes: |
   \usepackage{awesomebox}
