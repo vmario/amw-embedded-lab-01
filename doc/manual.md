@@ -26,9 +26,11 @@ Celem ćwiczenia jest zapoznanie się z:
 
 # Uruchomienie programu wyjściowego
 
-1. Podłącz diodę `LED1` do pinu `PC0` portu `PORTC`.
+1. Podłącz płytkę _WPSH209_ do _Arduino Uno_.
 1. Zbuduj program i wgraj do mikrokontrolera.
-1. Zweryfikuj, czy dioda `LED1` zaświeciła się.
+1. Zweryfikuj, czy dioda LED `D2` zaświeciła się.
+
+\awesomebox[purple]{2pt}{\faMicrochip}{purple}{Dioda \lstinline{D1} mruga po uruchomieniu urządzenia i w trakcie programowania, gdyż jest używana przez bootloader, który bierze również udział w programowaniu \textit{Arduino Uno}.}
 
 \awesomebox[purple]{2pt}{\faMicrochip}{purple}{Zauważ, że diodę zaświeca stan niski, czyli logiczne \lstinline{0}. Wynika to z tego, że jedna nóżka diody (anoda) podłączona jest na stałe do dodatniej szyny zasilania, a do zaświecenia potrzebne jest jeszcze podłączenie ujemnej szyny zasilania do drugiej nóżki (katody).}
 
@@ -40,7 +42,7 @@ Celem ćwiczenia jest zapoznanie się z:
 
 ## Konfiguracja sprzętowa
 
-1. Podłącz przycisk `KEY1` do pinu `PD3` portu `PORTD`.
+1. Załóż zworkę `J2`.
 
 \awesomebox[purple]{2pt}{\faMicrochip}{purple}{Zauważ, że wciśnięcie przycisku zwiera pin mikrokontrolera do ujemnej szyny zasilania, więc znów stanem aktywnym okazuje się \lstinline{0}.}
 
@@ -48,8 +50,8 @@ Celem ćwiczenia jest zapoznanie się z:
 
 Zmodyfikuj pętlę główną \lstinline{mainLoop()}, by spełnić poniższe wymagania.
 
-1. Po uruchomieniu dioda `LED1` powinna być zgaszona.
-1. Dioda `LED1` powinna zaświecać się po wciśnięciu przycisku `KEY1` i gasnąć po jego puszczeniu.
+1. Po uruchomieniu dioda `D2` powinna być zgaszona.
+1. Dioda `D2` powinna zaświecać się po wciśnięciu przycisku `A1` i gasnąć po jego puszczeniu.
 
 \awesomebox[violet]{2pt}{\faBook}{violet}{Zapoznaj się z rejestrami \lstinline{PORT} (\textit{Data Register}) i~\lstinline{PIN} (\textit{Input Pins Address}), które pozwalają, odpowiednio, zapisywać stan wyjściowy i odczytywać stan wejściowy z danego portu.}
 
@@ -57,17 +59,14 @@ Zmodyfikuj pętlę główną \lstinline{mainLoop()}, by spełnić poniższe wyma
 
 # Zadanie rozszerzone
 
-## Konfiguracja sprzętowa
-
-1. Podłącz diody `LED2`…`LED5` do pinów `PC1`…`PC4` portu `PORTC`.
-1. Podłącz przyciski `KEY2`…`KEY5` do pinów `PD4`…`PD7` portu `PORTD`.
-
 ## Wymagania funkcjonalne
 
 Zmodyfikuj pętlę główną \lstinline{mainLoop()}, by spełnić poniższe wymagania.
 
-1. Po uruchomieniu diody `LED1`…`LED5` powinny być zgaszone.
+1. Po uruchomieniu diody `D2`…`D4` powinny być zgaszone.
 1. Dioda powinna zaświecać się po wciśnięciu przycisku o takim samym numerze i gasnąć po jego puszczeniu.
 1. Wciśnięcie kilku przycisków jednocześnie powinno zaświecać odpowiednie diody.
 
-\awesomebox[teal]{2pt}{\faCode}{teal}{Użyj operatora przesunięcia bitowego \lstinline{>>}, aby ominąć kłopotliwą różnicę w numeracji pinów dla przycisków i LED-ów.}
+\awesomebox[violet]{2pt}{\faBook}{violet}{Z dokumentacji płytki \textit{WPSH209} i \textit{Arduino Uno} odczytaj numerację pinów, do których podłączone są diody i przyciski.}
+
+\awesomebox[teal]{2pt}{\faCode}{teal}{Możesz użyć operatora przesunięcia bitowego \lstinline{>>}, aby ominąć kłopotliwą różnicę w numeracji pinów dla przycisków i LED-ów.}

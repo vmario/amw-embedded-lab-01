@@ -16,10 +16,22 @@ _W trosce o Państwa wyniki proszę o czytelne wpisywanie nazwisk._
 
 **Autorzy**: \dotfill
 
-# Zadanie podstawowe
+# Zadania podstawowe
 
-Test.
+Opisz przeznaczenie rejestrów `DDR`, `PIN` i `PORT`. Zwróć uwagę na znaczenie rejestrów `PORT` w&nbsp;zależności od kierunku portu.
 
-\vspace{10cm}
+`DDR` --- 
+\vspace{1cm}
 
-Test 2.
+`PIN` --- 
+\vspace{1cm}
+
+`PORT` w przypadku pinu wejściowego --- 
+\vspace{1cm}
+
+`PORT` w przypadku pinu wyjściowego --- 
+\vspace{1cm}
+
+# Zadanie rozszerzone
+
+Opisz zachowanie rejestru 
