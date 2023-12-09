@@ -1,15 +1,7 @@
-.PHONY: clean build all program reset sizebefore sizeafter
+.PHONY: clean build all program erase sizebefore sizeafter
 
-MCU_TARGET_ATmega32A = atmega32a
-MCU_TARGET_ATmega644P = atmega644p
-MCU_TARGET_ATmega1284P = atmega1284p
-
-FUSES_ATmega32A = -U hfuse:w:0xd9:m -U lfuse:w:0xe4:m
-FUSES_ATmega644P = -U hfuse:w:0xd9:m -U lfuse:w:0xe2:m -U efuse:w:0xff:m
-FUSES_ATmega1284P = -U hfuse:w:0xd9:m -U lfuse:w:0xe2:m -U efuse:w:0xff:m
-
-MCU_TARGET = ${MCU_TARGET_${CONFIGURATION}}
-F_CPU = 8000000
+MCU = atmega328p
+F_CPU = 16000000
 
 USRBIN ?= C:/msys64/usr/bin/
 TOOLCHAIN ?= C:/Bin/avr8-gnu-toolchain-win32_x86_64/bin/avr-
@@ -35,19 +27,19 @@ TARGETDIR = bin
 
 INCLUDES = -I.
 LIBS = -lm
-CFLAGS = -mmcu=$(MCU_TARGET)
+CFLAGS = -mmcu=$(MCU)
 CFLAGS += -std=c99 -Wall -Wundef -Wextra -pedantic -Wstrict-prototypes
-CFLAGS += -Os -flto
+CFLAGS += -Os -g0 -flto
 CFLAGS += -Wa,-adhlns=$(<:%.c=$(OBJDIR)/%.lst)
 CFLAGS += -MD -MP -MF $(DEPDIR)/$(basename $(@F)).d
-CXXFLAGS = -mmcu=$(MCU_TARGET)
+CXXFLAGS = -mmcu=$(MCU)
 CXXFLAGS += -std=c++14 -Wall -Wundef -Wextra -pedantic
-CXXFLAGS += -Os -flto -fno-exceptions
+CXXFLAGS += -Os -g0 -flto -fno-exceptions
 CXXFLAGS += -Wa,-adhlns=$(<:%.cpp=$(OBJDIR)/%.lst)
 CXXFLAGS += -MD -MP -MF $(DEPDIR)/$(basename $(@F)).d
-LDFLAGS = -mmcu=$(MCU_TARGET)
-LDFLAGS += -Os -flto
-LDFLAGS += -Wl,-u,vfprintf -lprintf_flt -lm 
+LDFLAGS = -mmcu=$(MCU)
+LDFLAGS += -Os -g0 -flto
+#LDFLAGS += -Wl,-u,vfprintf -lprintf_flt -lm 
 LDFLAGS += -Wl,-Map=$(TARGET).map,--cref
 DEFS = -DF_CPU=$(F_CPU)ul
 
@@ -103,25 +95,21 @@ clean:
 	$(RMDIR) $(TARGETDIR)
 
 program: all
-	$(AVRDUDE) -c usbasp -p $(MCU_TARGET) ${FUSES_${CONFIGURATION}} -U flash:w:$(TARGET).hex:i
+	$(AVRDUDE) \
+		-p $(MCU) -c arduino -P /dev/ttyACM0 -b 115200 \
+		-U flash:w:$(TARGET).hex:i
 
 erase:
-	$(AVRDUDE) -c usbasp -p $(MCU_TARGET) -e
-
-reset:
-	$(AVRDUDE) -c usbasp -p $(MCU_TARGET) -v
-
-fuses:
-	$(AVRDUDE) -c usbasp -p $(MCU_TARGET) ${FUSES_${CONFIGURATION}}
+	$(AVRDUDE) \
+		-p $(MCU) -c usbtiny \
+		-U lfuse:w:0xff:m -U hfuse:w:0xde:m -U efuse:w:0xfd:m -U lock:w:0xcf:m \
+		-U flash:w:bootloader/optiboot_atmega328.hex:i
 
 HEXSIZE = $(SIZE) --target=$(FORMAT) $(TARGET).hex
 ELFSIZE = $(SIZE) -A $(TARGET).elf
-AVRMEM = avr-mem.sh $(TARGET).elf $(MCU)
 
 sizebefore:
-	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_BEFORE); $(ELFSIZE); \
-	$(AVRMEM) 2>/dev/null; echo; fi
+	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_BEFORE); $(ELFSIZE); fi
 
 sizeafter:
-	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); \
-	$(AVRMEM) 2>/dev/null; echo; fi
+	@if test -f $(TARGET).elf; then echo; echo $(MSG_SIZE_AFTER); $(ELFSIZE); fi
