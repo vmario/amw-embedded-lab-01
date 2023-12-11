@@ -6,6 +6,7 @@ F_CPU = 16000000
 USRBIN ?= C:/msys64/usr/bin/
 TOOLCHAIN ?= C:/Bin/avr8-gnu-toolchain-win32_x86_64/bin/avr-
 AVRDUDE ?= C:/Bin/avrdude-v7.1-windows-x64/avrdude
+PORT ?= COM3
 
 CC = $(TOOLCHAIN)gcc
 CXX = $(TOOLCHAIN)g++
@@ -96,7 +97,7 @@ clean:
 
 program: all
 	$(AVRDUDE) \
-		-p $(MCU) -c arduino -P /dev/ttyACM0 -b 115200 \
+		-p $(MCU) -c arduino -P \\\\.\\$(PORT) -b 115200 \
 		-U flash:w:$(TARGET).hex:i
 
 erase:
