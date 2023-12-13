@@ -34,7 +34,7 @@ Celem ćwiczenia jest zapoznanie się z:
 
 \awesomebox[purple]{2pt}{\faMicrochip}{purple}{Zauważ, że diodę zaświeca stan niski, czyli logiczne \lstinline{0}. Wynika to z tego, że jedna nóżka diody (anoda) podłączona jest na stałe do dodatniej szyny zasilania, a do zaświecenia potrzebne jest jeszcze podłączenie ujemnej szyny zasilania do drugiej nóżki (katody).}
 
-\awesomebox[violet]{2pt}{\faBook}{violet}{Zapoznaj się z opisem portów I/O, w szczególności rejestru \lstinline{DDR} (\textit{Data Direction Register}), decydującego o kierunku poszczególnych pinów w porcie, tj. konfigurującego piny jako wejścia lub wyjścia.}
+\awesomebox[violet]{2pt}{\faBook}{violet}{Zapoznaj się z opisem portów I/O w nocie katalogowej mikrokontrolera, w szczególności rejestru \lstinline{DDR} (\textit{Data Direction Register}), decydującego o kierunku poszczególnych pinów w porcie, tj. konfigurującego piny jako wejścia lub wyjścia.}
 
 \awesomebox[teal]{2pt}{\faCode}{teal}{Po wskazaniu kursorem makra \lstinline{_BV()} zobaczysz jego rozwinięcie. Zwróć uwagę na wykorzystanie operatora przesunięcia bitowego \lstinline{<<} w celu ustawienia bitu o zadanym numerze.}
 
@@ -64,9 +64,9 @@ Zmodyfikuj pętlę główną \lstinline{mainLoop()}, by spełnić poniższe wyma
 Zmodyfikuj pętlę główną \lstinline{mainLoop()}, by spełnić poniższe wymagania.
 
 1. Po uruchomieniu diody `D2`…`D4` powinny być zgaszone.
-1. Dioda powinna zaświecać się po wciśnięciu przycisku o takim samym numerze i gasnąć po jego puszczeniu.
+1. Każda z diod powinna zaświecać się po wciśnięciu przypisanego jej przycisku (np. `A1` dla diody `D2`) i gasnąć po jego puszczeniu.
 1. Wciśnięcie kilku przycisków jednocześnie powinno zaświecać odpowiednie diody.
 
 \awesomebox[violet]{2pt}{\faBook}{violet}{Z dokumentacji płytki \textit{WPSH209} i \textit{Arduino Uno} odczytaj numerację pinów, do których podłączone są diody i przyciski.}
 
-\awesomebox[teal]{2pt}{\faCode}{teal}{Możesz użyć operatora przesunięcia bitowego \lstinline{>>}, aby ominąć kłopotliwą różnicę w numeracji pinów dla przycisków i LED-ów.}
+\awesomebox[teal]{2pt}{\faCode}{teal}{Możesz użyć operatora przesunięcia bitowego \lstinline{>>}, aby ominąć kłopotliwą różnicę w~numeracji pinów dla przycisków i LED-ów.}
