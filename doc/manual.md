@@ -48,7 +48,7 @@ Celem ćwiczenia jest zapoznanie się z:
 
 ## Wymagania funkcjonalne
 
-Zmodyfikuj pętlę główną \lstinline{mainLoop()}, by spełnić poniższe wymagania.
+Zmodyfikuj procedurę inicjalizacji GPIO `gpioInitialize()` i pętlę główną `mainLoop()`, by spełnić poniższe wymagania.
 
 1. Po uruchomieniu dioda `D2` powinna być zgaszona.
 1. Dioda `D2` powinna zaświecać się po wciśnięciu przycisku `A1` i gasnąć po jego puszczeniu.
